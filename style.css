@@ -264,8 +264,7 @@ body {
 /* ===== Task List ===== */
 .tasks {
     padding: var(--spacing-lg);
-    min-height: 200px;
-    max-height: 400px;
+    min-height: 300px;
     overflow-y: auto;
 }
 
@@ -539,7 +538,7 @@ body {
     }
     
     .tasks {
-        max-height: 50vh;
+        min-height: 250px;
     }
     
     .footer {
