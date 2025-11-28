@@ -64,6 +64,27 @@ body {
     -moz-osx-font-smoothing: grayscale;
 }
 
+/* ===== Skip Link for Accessibility ===== */
+.skip-link {
+    position: absolute;
+    top: -40px;
+    left: 0;
+    background: var(--color-accent);
+    color: white;
+    padding: var(--spacing-sm) var(--spacing-md);
+    text-decoration: none;
+    border-radius: 0 0 var(--radius-md) 0;
+    font-weight: 600;
+    z-index: 100;
+    transition: top var(--transition-base);
+}
+
+.skip-link:focus {
+    top: 0;
+    outline: 2px solid white;
+    outline-offset: 2px;
+}
+
 /* ===== Container ===== */
 .container {
     max-width: 600px;
@@ -266,6 +287,7 @@ body {
     padding: var(--spacing-lg);
     min-height: 300px;
     overflow-y: auto;
+    contain: layout style paint;
 }
 
 .tasks::-webkit-scrollbar {
@@ -292,6 +314,7 @@ body {
     margin-bottom: var(--spacing-sm);
     transition: all var(--transition-base);
     animation: slideIn 0.3s ease;
+    will-change: transform;
 }
 
 @keyframes slideIn {
@@ -608,4 +631,17 @@ button:focus-visible,
 input:focus-visible {
     outline: 2px solid var(--color-accent);
     outline-offset: 2px;
+}
+
+/* Screen reader only */
+.sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border-width: 0;
 }

@@ -3,28 +3,41 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="To-Do List - Organize suas tarefas de forma simples e eficiente com nossa aplicação PWA">
-    <meta name="keywords" content="to-do, lista de tarefas, produtividade, PWA">
-    <meta name="author" content="To-Do List App">
+    <meta name="description" content="To-Do List PWA - Organize suas tarefas com eficiência. App gratuito, funciona offline, design moderno e tema escuro. Gerencie sua produtividade de forma simples.">
+    <meta name="keywords" content="to-do list, lista de tarefas, gerenciador de tarefas, produtividade, PWA, app offline, organizador, planejamento, task manager">
+    <meta name="author" content="Mateus">
     <meta name="theme-color" content="#1a1a2e">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <meta name="apple-mobile-web-app-title" content="To-Do List">
+    <meta name="robots" content="index, follow">
+    <meta name="language" content="Portuguese">
+    <meta name="revisit-after" content="7 days">
+    <link rel="canonical" href="https://dev-mateus.github.io/to-do-list/">
     
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website">
-    <meta property="og:title" content="To-Do List - Organize suas Tarefas">
-    <meta property="og:description" content="Gerencie suas tarefas de forma simples e eficiente">
+    <meta property="og:url" content="https://dev-mateus.github.io/to-do-list/">
+    <meta property="og:title" content="To-Do List PWA - Organize suas Tarefas">
+    <meta property="og:description" content="App gratuito de lista de tarefas com tema escuro, funciona offline e é totalmente responsivo. Aumente sua produtividade!">
+    <meta property="og:image" content="https://dev-mateus.github.io/to-do-list/icons/icon-512x512.png">
+    <meta property="og:locale" content="pt_BR">
+    <meta property="og:site_name" content="To-Do List PWA">
     
     <!-- Twitter -->
-    <meta name="twitter:card" content="summary">
-    <meta name="twitter:title" content="To-Do List - Organize suas Tarefas">
-    <meta name="twitter:description" content="Gerencie suas tarefas de forma simples e eficiente">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:url" content="https://dev-mateus.github.io/to-do-list/">
+    <meta name="twitter:title" content="To-Do List PWA - Organize suas Tarefas">
+    <meta name="twitter:description" content="App gratuito de lista de tarefas com tema escuro, funciona offline e é totalmente responsivo.">
+    <meta name="twitter:image" content="https://dev-mateus.github.io/to-do-list/icons/icon-512x512.png">
     
-    <title>To-Do List - Organize suas Tarefas</title>
+    <title>To-Do List PWA - Organize suas Tarefas | Gratuito e Offline</title>
+    
+    <!-- Preconnect for performance -->
+    <link rel="dns-prefetch" href="https://dev-mateus.github.io">
     
     <!-- Manifest -->
-    <link rel="manifest" href="manifest.json">
+    <link rel="manifest" href="manifest.json" crossorigin="use-credentials">
     
     <!-- Favicon -->
     <link rel="icon" type="image/png" sizes="192x192" href="icons/icon-192x192.png">
@@ -35,6 +48,9 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
+    <!-- Skip to main content for accessibility -->
+    <a href="#main-content" class="skip-link">Pular para o conteúdo principal</a>
+    
     <div class="container">
         <!-- Header -->
         <header class="header">
@@ -90,13 +106,13 @@
         </nav>
 
         <!-- Task List -->
-        <main class="tasks" id="taskList" role="list" aria-label="Lista de tarefas">
+        <main class="tasks" id="taskList" role="list" aria-label="Lista de tarefas" aria-live="polite" aria-atomic="false">
             <!-- Tasks will be dynamically inserted here -->
         </main>
 
         <!-- Empty State -->
-        <div class="empty-state" id="emptyState">
-            <svg class="empty-state__icon" width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+        <div class="empty-state" id="emptyState" role="status" aria-live="polite">
+            <svg class="empty-state__icon" width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
                 <circle cx="12" cy="12" r="10"></circle>
                 <path d="M9 11l3 3L22 4"></path>
             </svg>
@@ -119,8 +135,8 @@
         <footer class="footer">
             <p class="footer__copyright">© 2025 To-Do List. Todos os direitos reservados.</p>
             <p class="footer__author">
-                Desenvolvido por 
-                <a href="https://github.com/dev-mateus" target="_blank" rel="noopener noreferrer" class="footer__link">
+                Desenvolvido com <span aria-label="amor">❤️</span> por 
+                <a href="https://github.com/dev-mateus" target="_blank" rel="noopener noreferrer" class="footer__link" aria-label="Perfil do GitHub de Mateus">
                     Mateus
                 </a>
             </p>
@@ -128,6 +144,6 @@
     </div>
 
     <!-- Scripts -->
-    <script src="script.js"></script>
+    <script src="script.js" defer></script>
 </body>
 </html>

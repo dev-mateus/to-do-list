@@ -68,6 +68,9 @@ function addTask(text) {
     taskInput.value = '';
     taskInput.focus();
     
+    // Announce to screen readers
+    announceToScreenReader(`Tarefa "${task.text}" adicionada`);
+    
     // Animate new task
     setTimeout(() => {
         const taskElement = document.querySelector(`[data-task-id="${task.id}"]`);
@@ -84,6 +87,10 @@ function toggleTask(id) {
         saveTasks();
         renderTasks();
         updateCounts();
+        
+        // Announce to screen readers
+        const status = task.completed ? 'concluída' : 'pendente';
+        announceToScreenReader(`Tarefa marcada como ${status}`);
     }
 }
 
@@ -123,11 +130,13 @@ function renderTasks() {
     
     if (filteredTasks.length === 0) {
         taskList.innerHTML = '';
+        taskList.setAttribute('aria-busy', 'false');
         emptyState.classList.add('show');
         return;
     }
     
     emptyState.classList.remove('show');
+    taskList.setAttribute('aria-busy', 'true');
     
     taskList.innerHTML = filteredTasks.map(task => `
         <article class="task ${task.completed ? 'task--completed' : ''}" data-task-id="${task.id}" role="listitem">
@@ -136,15 +145,16 @@ function renderTasks() {
                 class="task__checkbox" 
                 ${task.completed ? 'checked' : ''}
                 aria-label="Marcar tarefa como ${task.completed ? 'pendente' : 'concluída'}"
+                aria-describedby="task-text-${task.id}"
                 onchange="toggleTask(${task.id})"
             >
-            <p class="task__text">${escapeHtml(task.text)}</p>
+            <p class="task__text" id="task-text-${task.id}">${escapeHtml(task.text)}</p>
             <button 
                 class="task__delete" 
-                aria-label="Excluir tarefa"
+                aria-label="Excluir tarefa: ${escapeHtml(task.text)}"
                 onclick="deleteTask(${task.id})"
             >
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
                     <polyline points="3 6 5 6 21 6"></polyline>
                     <path d="M19 6v14a2 2 0 01-2 2H7a2 2 0 01-2-2V6m3 0V4a2 2 0 012-2h4a2 2 0 012 2v2"></path>
                     <line x1="10" y1="11" x2="10" y2="17"></line>
@@ -153,6 +163,11 @@ function renderTasks() {
             </button>
         </article>
     `).join('');
+    
+    // Update aria-busy after render
+    requestAnimationFrame(() => {
+        taskList.setAttribute('aria-busy', 'false');
+    });
 }
 
 function getFilteredTasks() {
@@ -284,6 +299,21 @@ function escapeHtml(text) {
     const div = document.createElement('div');
     div.textContent = text;
     return div.innerHTML;
+}
+
+// Screen reader announcements
+function announceToScreenReader(message) {
+    const announcement = document.createElement('div');
+    announcement.setAttribute('role', 'status');
+    announcement.setAttribute('aria-live', 'polite');
+    announcement.setAttribute('aria-atomic', 'true');
+    announcement.className = 'sr-only';
+    announcement.textContent = message;
+    document.body.appendChild(announcement);
+    
+    setTimeout(() => {
+        document.body.removeChild(announcement);
+    }, 1000);
 }
 
 // Add CSS animation for slideOut

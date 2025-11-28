@@ -1,0 +1,6 @@
+# https://www.robotstxt.org/robotstxt.html
+User-agent: *
+Allow: /
+
+# Sitemaps
+Sitemap: https://dev-mateus.github.io/to-do-list/sitemap.xml
