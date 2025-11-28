@@ -1,0 +1,36 @@
+<svg width="512" height="512" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background -->
+  <rect width="512" height="512" fill="#4a90e2" rx="100"/>
+  
+  <!-- Gradient overlay -->
+  <defs>
+    <linearGradient id="grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#4a90e2;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#5a67d8;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  <rect width="512" height="512" fill="url(#grad)" rx="100"/>
+  
+  <!-- Checkmark icon -->
+  <g transform="translate(256, 256)">
+    <!-- Circle background -->
+    <circle cx="0" cy="0" r="160" fill="rgba(255, 255, 255, 0.2)" stroke="rgba(255, 255, 255, 0.4)" stroke-width="8"/>
+    
+    <!-- Checkmark -->
+    <path 
+      d="M -60 0 L -20 40 L 80 -60" 
+      fill="none" 
+      stroke="white" 
+      stroke-width="24" 
+      stroke-linecap="round" 
+      stroke-linejoin="round"
+    />
+    
+    <!-- List lines -->
+    <g transform="translate(0, 80)">
+      <rect x="-80" y="0" width="160" height="12" rx="6" fill="rgba(255, 255, 255, 0.6)"/>
+      <rect x="-80" y="25" width="120" height="12" rx="6" fill="rgba(255, 255, 255, 0.5)"/>
+      <rect x="-80" y="50" width="140" height="12" rx="6" fill="rgba(255, 255, 255, 0.4)"/>
+    </g>
+  </g>
+</svg>

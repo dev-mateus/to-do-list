@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="To-Do List - Organize suas tarefas de forma simples e eficiente com nossa aplicação PWA">
+    <meta name="keywords" content="to-do, lista de tarefas, produtividade, PWA">
+    <meta name="author" content="To-Do List App">
+    <meta name="theme-color" content="#1a1a2e">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="To-Do List">
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="To-Do List - Organize suas Tarefas">
+    <meta property="og:description" content="Gerencie suas tarefas de forma simples e eficiente">
+    
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="To-Do List - Organize suas Tarefas">
+    <meta name="twitter:description" content="Gerencie suas tarefas de forma simples e eficiente">
+    
+    <title>To-Do List - Organize suas Tarefas</title>
+    
+    <!-- Manifest -->
+    <link rel="manifest" href="manifest.json">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" sizes="192x192" href="icons/icon-192x192.png">
+    <link rel="icon" type="image/png" sizes="512x512" href="icons/icon-512x512.png">
+    <link rel="apple-touch-icon" href="icons/icon-192x192.png">
+    
+    <!-- CSS -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <header class="header">
+            <h1 class="header__title">
+                <svg class="header__icon" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M9 11l3 3L22 4"></path>
+                    <path d="M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11"></path>
+                </svg>
+                Minhas Tarefas
+            </h1>
+            <button id="installBtn" class="install-btn" aria-label="Instalar aplicativo">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"></path>
+                    <polyline points="7 10 12 15 17 10"></polyline>
+                    <line x1="12" y1="15" x2="12" y2="3"></line>
+                </svg>
+                Instalar App
+            </button>
+        </header>
+
+        <!-- Add Task Form -->
+        <section class="add-task" aria-label="Adicionar nova tarefa">
+            <form id="taskForm" class="add-task__form">
+                <input 
+                    type="text" 
+                    id="taskInput" 
+                    class="add-task__input" 
+                    placeholder="Adicionar nova tarefa..." 
+                    aria-label="Nova tarefa"
+                    autocomplete="off"
+                    required
+                >
+                <button type="submit" class="add-task__btn" aria-label="Adicionar tarefa">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <line x1="12" y1="5" x2="12" y2="19"></line>
+                        <line x1="5" y1="12" x2="19" y2="12"></line>
+                    </svg>
+                </button>
+            </form>
+        </section>
+
+        <!-- Filters -->
+        <nav class="filters" aria-label="Filtrar tarefas">
+            <button class="filters__btn filters__btn--active" data-filter="all">
+                Todas <span class="filters__count" id="countAll">0</span>
+            </button>
+            <button class="filters__btn" data-filter="pending">
+                Pendentes <span class="filters__count" id="countPending">0</span>
+            </button>
+            <button class="filters__btn" data-filter="completed">
+                Concluídas <span class="filters__count" id="countCompleted">0</span>
+            </button>
+        </nav>
+
+        <!-- Task List -->
+        <main class="tasks" id="taskList" role="list" aria-label="Lista de tarefas">
+            <!-- Tasks will be dynamically inserted here -->
+        </main>
+
+        <!-- Empty State -->
+        <div class="empty-state" id="emptyState">
+            <svg class="empty-state__icon" width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                <circle cx="12" cy="12" r="10"></circle>
+                <path d="M9 11l3 3L22 4"></path>
+            </svg>
+            <p class="empty-state__text">Nenhuma tarefa encontrada</p>
+            <p class="empty-state__subtext">Adicione uma nova tarefa para começar</p>
+        </div>
+
+        <!-- Actions -->
+        <footer class="actions">
+            <button id="clearAllBtn" class="actions__btn actions__btn--danger" aria-label="Limpar todas as tarefas">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <polyline points="3 6 5 6 21 6"></polyline>
+                    <path d="M19 6v14a2 2 0 01-2 2H7a2 2 0 01-2-2V6m3 0V4a2 2 0 012-2h4a2 2 0 012 2v2"></path>
+                </svg>
+                Limpar Todas
+            </button>
+        </footer>
+    </div>
+
+    <!-- Scripts -->
+    <script src="script.js"></script>
+</body>
+</html>
