@@ -10,6 +10,7 @@ const emptyState = document.getElementById('emptyState');
 const filterButtons = document.querySelectorAll('.filters__btn');
 const clearAllBtn = document.getElementById('clearAllBtn');
 const installBtn = document.getElementById('installBtn');
+const scrollTopBtn = document.getElementById('scrollTopBtn');
 const countAll = document.getElementById('countAll');
 const countPending = document.getElementById('countPending');
 const countCompleted = document.getElementById('countCompleted');
@@ -230,6 +231,12 @@ function setupEventListeners() {
     
     // Install button
     installBtn.addEventListener('click', installPWA);
+    
+    // Scroll to top button
+    scrollTopBtn.addEventListener('click', scrollToTop);
+    
+    // Show/hide scroll to top button on scroll
+    taskList.addEventListener('scroll', handleScroll);
 }
 
 // ===== PWA Functions =====
@@ -314,6 +321,22 @@ function announceToScreenReader(message) {
     setTimeout(() => {
         document.body.removeChild(announcement);
     }, 1000);
+}
+
+// Scroll to top functionality
+function scrollToTop() {
+    taskList.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+    });
+}
+
+function handleScroll() {
+    if (taskList.scrollTop > 200) {
+        scrollTopBtn.classList.add('show');
+    } else {
+        scrollTopBtn.classList.remove('show');
+    }
 }
 
 // Add CSS animation for slideOut
